@@ -81,6 +81,11 @@ header h1 {
   margin-bottom: 20px;
 }
 
+a {
+  color: var(--textColor);
+  text-decoration: none;
+}
+
 nav ul {
   list-style-type: none;
   padding: 0;
@@ -168,7 +173,7 @@ footer {
   background-color: #323232;
 }
 
-.about-section {
+section {
   width: 80%;
   margin: 20px auto;
   padding: 20px;
@@ -176,15 +181,18 @@ footer {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.about-section p {
+section p {
   text-align: justify;
   line-height: 1.6;
 }
 
-.about-section a {
-  color: #0056b3;
+section a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
 }
 
-.about-section a:hover {
-  text-decoration: underline;
+section a:hover {
+  color: #5c5c5c;
+  font-weight: bold;
 }
