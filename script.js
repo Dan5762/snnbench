@@ -1,26 +1,50 @@
 // script.js
-// Replace this with your actual data fetching logic
-const fetchData = async () => {
-  return [
-      { column1: 'Data 1', column2: 'Data 2' },
-      // More data...
-  ];
+// fetch data from file
+const fetchData = async (filePath) => {
+  try {
+    const response = await fetch(filePath);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
 };
 
 const populateTable = async () => {
-  const data = await fetchData();
-  const tableBody = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+  console.log('OHHH')
+  const dataName = document.currentScript.getAttribute('data-name');
+  const filePath = `data/${dataName}.json`;
+  const data = await fetchData(filePath);
+  console.log(data)
+  
+  const table = document.querySelector('table');
+  const tableBody = table.querySelector('tbody');
 
-  data.forEach(rowData => {
-      const row = document.createElement('tr');
+  data.forEach((row) => {
+    const tableRow = document.createElement('tr');
 
-      Object.values(rowData).forEach(cellData => {
-          const cell = document.createElement('td');
-          cell.textContent = cellData;
-          row.appendChild(cell);
-      });
+    var tableCell = document.createElement('td');
+    tableCell.textContent = row["title"];
+    tableRow.appendChild(tableCell);
 
-      tableBody.appendChild(row);
+    tableCell = document.createElement('td');
+    tableCell.textContent = row["authors"];
+    tableRow.appendChild(tableCell);
+
+    tableCell = document.createElement('td');
+    tableCell.textContent = row["score"];
+    tableRow.appendChild(tableCell);
+
+    tableRow.addEventListener('click', () => {
+      window.location.href = row["paper"];
+    });
+
+    tableRow.addEventListener('mouseover', () => {
+      tableRow.style.cursor = 'pointer';
+    });
+  
+    tableBody.appendChild(tableRow);
   });
 };
 
