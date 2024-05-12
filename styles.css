@@ -82,6 +82,7 @@ header h1 {
 }
 
 a {
+  cursor: pointer;
   color: var(--textColor);
   text-decoration: none;
 }
