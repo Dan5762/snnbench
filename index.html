@@ -58,18 +58,23 @@
         </nav>
     </header>
     <main>
-      <a href="mnist.html">
+      <a href="benchmarks/mnist.html">
         <section class="section">
             <h2>MNIST</h2>
-            <p>The MNIST database is a large database of handwritten digits that is commonly used for training various image processing systems. The database is also widely used for training and testing in the field of machine learning. It was created by "re-mixing" the samples from NIST's original datasets. The creators felt that since NIST's training dataset was taken from American Census Bureau employees, while the testing dataset was taken from American high school students, it was not well-suited for machine learning experiments. Furthermore, the black and white images from NIST were normalized to fit into a 28x28 pixel bounding box and anti-aliased, which introduced grayscale levels.</p>
+            <p>The MNIST dataset is a large collection of handwritten digits, ranging from 0 to 9, commonly used for training and testing in the field of machine learning and computer vision. It contains 60,000 training images and 10,000 testing images, each of which is a 28x28 pixel grayscale image. MNIST is widely used as a benchmark dataset for algorithms on image recognition, serving as an introductory dataset for neural network and machine learning techniques.</p>
         </section>
       </a>
-      <a href="google_speech_commands_v2.html">
+      <a href="benchmarks/google_speech_commands_v2.html">
         <section class="section">
             <h2>Google Speech Commands v2</h2>
-            <p>The Google Speech Commands dataset is a dataset of spoken words designed to help train machine learning models for speech recognition. The dataset consists of over 105,000 WAV audio files of people saying 30 different words. The dataset is split into 65,000 training files and 40,000 testing files. The dataset is designed to be used for training machine learning models to recognize spoken words. The dataset is designed to be used for training machine learning models to recognize spoken words.</p>
+            <p>The Google Speech Commands dataset is designed to support the training and evaluation of keyword spotting systems in limited-vocabulary speech recognition tasks. It is specifically built for on-device models where resource constraints are significant. The dataset consists of 105,829 one-second audio clips of 35 words spoken by thousands of different speakers, designed to activate or control devices. The dataset aims to help develop models that accurately detect specific spoken words while minimizing false triggers from background noise or unrelated speech.</p>
         </section>
       </a>
+      <a href="benchmarks/spiking_heidelberg_digits.html">
+        <section class="section">
+            <h2>Spiking Heidelberg Digits</h2>
+            <p>The Spiking Heidelberg Digits dataset consists two datasets for evaluating spiking neural networks: Heidelberg Digits (HD) and Speech Commands (SC). HD consists of high-quality recordings of spoken digits in English and German, designed for classification tasks. SC includes 1-second audio clips of single spoken words, mimicking real-world conditions for keyword spotting on mobile devices. Both datasets convert audio to spike-based data to facilitate standardized performance benchmarking of various spiking neural network architectures.</p>
+        </section>
     </main>
   </body>
 </html>
