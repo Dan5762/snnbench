@@ -21,8 +21,10 @@
     <main>
         <section class="contact-form">
             <h2>We Want to Hear from You</h2>
-            <p>If you believe a model should be added to the SNN benchmarks, please fill out the form below with the details. We appreciate your contribution to enhancing our database.</p>
-            <form action="submit_form.php" method="POST">
+            <p>If you believe a model should be added to the SNN benchmarks or you simply want to get in touch, please fill out the form below with the details.</p>
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="94be928a-3fe7-4e72-b60e-2b420e7097b3">
+
                 <label for="name">Your Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -32,9 +34,14 @@
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" rows="4" placeholder="Please describe the model and add a link to the relevant publication"></textarea>
 
+                <label for="captcha"></label>
+                <div class="h-captcha" data-captcha="true"></div>
+
                 <input type="submit" value="Submit">
             </form>
+          </form>
         </section>
     </main>
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>

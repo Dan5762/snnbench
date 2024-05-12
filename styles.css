@@ -93,7 +93,7 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin: 0 10px;      /* Adds some space between the links */
 }
 
 nav ul li a {
