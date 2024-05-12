@@ -3,6 +3,6 @@
     "paper": "https://arxiv.org/abs/2007.05785",
     "title": "Incorporating Learnable Membrane Time Constant to Enhance Learning of Spiking Neural Networks",
     "authors": "Wei Fang, Zhaofei Yu, Yanqi Chen, Timothee Masquelier, Tiejun Huang, Yonghong Tian",
-    "accuracy": 99.72
+    "accuracy": 99.61
   }
 ]

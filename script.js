@@ -33,7 +33,7 @@ const populateTable = async () => {
     tableRow.appendChild(tableCell);
 
     tableCell = document.createElement('td');
-    tableCell.textContent = row["score"];
+    tableCell.textContent = row["accuracy"];
     tableRow.appendChild(tableCell);
 
     tableRow.addEventListener('click', () => {
