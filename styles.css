@@ -195,3 +195,18 @@ section a:hover {
   color: #5c5c5c;
   font-weight: bold;
 }
+
+.responsive-table {
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .responsive-table table {
+    width: 100%;
+    display: block;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    display: block;
+  }
+}
