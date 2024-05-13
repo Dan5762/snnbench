@@ -23,7 +23,7 @@ const countDatasets = async () => {
     const data = await response.json();
     const count = data.length;
     const element = document.getElementById(`${benchmark}-count`);
-    element.textContent = `Datasets: ${count}`;
+    element.textContent = `Benchmarked: ${count}`;
   }
 }
 
