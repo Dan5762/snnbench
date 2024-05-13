@@ -210,7 +210,7 @@ table th {
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 10em) {
+@media screen and (max-width: 30em) {
   table {
     border: 0;
   }
