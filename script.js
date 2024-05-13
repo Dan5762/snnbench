@@ -14,7 +14,12 @@ const fetchData = async (filePath) => {
 const populateTable = async () => {
   const dataName = document.currentScript.getAttribute('data-name');
   const filePath = `../data/${dataName}.json`;
-  const data = await fetchData(filePath);
+  var data = await fetchData(filePath);
+
+  // sort data by accuracy
+  data.sort((a, b) => {
+    return b["accuracy"] - a["accuracy"];
+  });
   
   const table = document.querySelector('table');
   const tableBody = table.querySelector('tbody');
@@ -30,6 +35,11 @@ const populateTable = async () => {
     var tableCell = document.createElement('td');
     tableCell.setAttribute('data-label', 'Authors');
     tableCell.textContent = row["authors"];
+    tableRow.appendChild(tableCell);
+
+    var tableCell = document.createElement('td');
+    tableCell.setAttribute('data-label', 'Neuron Count');
+    tableCell.textContent = row["neuron_count"];
     tableRow.appendChild(tableCell);
 
     var tableCell = document.createElement('td');
