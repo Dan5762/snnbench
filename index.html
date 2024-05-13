@@ -61,26 +61,81 @@
       <a href="benchmarks/mnist.html">
         <section class="section">
             <h2>MNIST</h2>
+            <h3 id="mnist-count"></h3>
             <p>The MNIST dataset is a large collection of handwritten digits, ranging from 0 to 9, commonly used for training and testing in the field of machine learning and computer vision. It contains 60,000 training images and 10,000 testing images, each of which is a 28x28 pixel grayscale image. MNIST is widely used as a benchmark dataset for algorithms on image recognition, serving as an introductory dataset for neural network and machine learning techniques.</p>
         </section>
       </a>
       <a href="benchmarks/n-mnist.html">
         <section class="section">
             <h2>N-MNIST</h2>
+            <h3 id="n-mnist-count"></h3>
             <p>The Neuromorphic-MNIST (N-MNIST) dataset is a spiking version of the original frame-based MNIST dataset. It consists of the same 60 000 training and 10 000 testing samples as the original MNIST dataset, and is captured at the same visual scale as the original MNIST dataset (28x28 pixels). The N-MNIST dataset was captured by mounting the ATIS sensor on a motorized pan-tilt unit and having the sensor move while it views MNIST examples on an LCD monitor.</p>
         </section>
       </a>
       <a href="benchmarks/google_speech_commands_v2.html">
         <section class="section">
             <h2>Google Speech Commands v2</h2>
+            <h3 id="google_speech_commands_v2-count"></h3>
             <p>The Google Speech Commands dataset is designed to support the training and evaluation of keyword spotting systems in limited-vocabulary speech recognition tasks. It is specifically built for on-device models where resource constraints are significant. The dataset consists of 105,829 one-second audio clips of 35 words spoken by thousands of different speakers, designed to activate or control devices. The dataset aims to help develop models that accurately detect specific spoken words while minimizing false triggers from background noise or unrelated speech.</p>
         </section>
       </a>
       <a href="benchmarks/spiking_heidelberg_digits.html">
         <section class="section">
             <h2>Spiking Heidelberg Digits</h2>
+            <h3 id="spiking_heidelberg_digits-count"></h3>
             <p>The Spiking Heidelberg Digits dataset consists two datasets for evaluating spiking neural networks: Heidelberg Digits (HD) and Speech Commands (SC). HD consists of high-quality recordings of spoken digits in English and German, designed for classification tasks. SC includes 1-second audio clips of single spoken words, mimicking real-world conditions for keyword spotting on mobile devices. Both datasets convert audio to spike-based data to facilitate standardized performance benchmarking of various spiking neural network architectures.</p>
         </section>
+      </a>
+      <a href="benchmarks/asl-dvs.html">
+        <section class="section">
+            <h2>ASL-DVS</h2>
+            <h3 id="asl-dvs-count"></h3>
+            <p>The ASL-DVS dataset is a large dataset for object classification using neuromorphic vision sensors. It contains 24 classes corresponding to 24 letters of the American Sign Language (excluding J and Z). The dataset was recorded with an iniLabs DAVIS240c NVS camera in an office environment, capturing handshapes performed by five subjects to introduce natural variance. Each class has 4,200 samples, amounting to a total of 100,800 samples. Each sample is approximately 100 milliseconds long. The dataset is designed to facilitate the development and testing of object recognition models based on neuromorphic vision sensors, providing a robust and realistic set of data for evaluating algorithm performance in classifying ASL handshapes.</p>
+        </section>
+      </a>
+      <a href="benchmarks/cifar10-dvs.html">
+        <section class="section">
+            </a><h2>CIFAR10-DVS</h2>
+            <h3 id="cifar10-dvs-count"></h3>
+            <p>The CIFAR10-DVS dataset is a neuromorphic vision dataset created by converting the standard CIFAR-10 dataset's frame-based images into event streams using a Dynamic Vision Sensor (DVS). This dataset contains 10,000 event-stream recordings divided across 10 different classes, each derived from corresponding CIFAR-10 images. The conversion process involved using a repeated closed-loop smooth (RCLS) movement of images in front of the DVS to simulate realistic visual scenarios that the camera might encounter. This method generates rich local intensity changes captured by the DVS, which quantizes these changes into "events" based on intensity thresholds. The CIFAR10-DVS dataset is designed to be moderately challenging to encourage advancements in event-driven algorithm development for tasks like object recognition in neuromorphic vision systems.</p>
+        </section>
+      </a>
+      <a href="benchmarks/dvs-gesture.html">
+        <section class="section">
+            <h2>DVS-Gesture</h2>
+            <h3 id="dvs-gesture-count"></h3>
+            <p>The DVS-Gesture dataset is a collection of hand gesture events captured using a Dynamic Vision Sensor (DVS), designed for gesture recognition tasks. The dataset includes 11 types of hand gestures performed by 29 subjects under three different lighting conditions, generating a total of over 1.4 million labeled events. This dataset is particularly suited for training and testing gesture recognition systems on neuromorphic hardware, such as the IBM TrueNorth neurosynaptic system. The gestures captured include various hand movements and arm rotations that are typical in human-computer interaction contexts. The dataset's high temporal resolution and its event-driven nature make it ideal for developing low-latency, power-efficient gesture recognition models.</p>
+        </section>
+      </a>
+      <a href="benchmarks/es-imagenet.html">
+        <section class="section">
+            <h2>ES-ImageNet</h2>
+            <h3 id="es-imagenet-count"></h3>
+            <p>The ES-ImageNet dataset is a large-scale event-stream classification dataset derived from the ILSVRC2012 image dataset, intended for use with spiking neural networks (SNNs). It includes about 1.3 million samples across 1,000 categories. The dataset is created using a novel algorithm called Omnidirectional Discrete Gradient (ODG), which converts traditional frame-based images into neuromorphic event streams, simulating the output of dynamic vision sensors (DVS). This approach captures discrete changes in pixel values, which are then timestamped to create event streams. This dataset aims to support advanced research in neuromorphic vision systems, offering a new benchmark for SNNs to process visual information efficiently and effectively.</p>
+        </section>
+      </a>
+      <a href="benchmarks/hardvs.html">
+        <section class="section">
+            <h2>HARDVS</h2>
+            <h3 id="hardvs-count"></h3>
+            <p>The ES-ImageNet dataset is a large-scale event-stream classification dataset derived from the ILSVRC2012 image dataset, intended for use with spiking neural networks (SNNs). It includes about 1.3 million samples across 1,000 categories. The dataset is created using a novel algorithm called Omnidirectional Discrete Gradient (ODG), which converts traditional frame-based images into neuromorphic event streams, simulating the output of dynamic vision sensors (DVS). This approach captures discrete changes in pixel values, which are then timestamped to create event streams. This dataset aims to support advanced research in neuromorphic vision systems, offering a new benchmark for SNNs to process visual information efficiently and effectively.</p>
+        </section>
+      </a>
+      <a href="benchmarks/n-caltech101.html">
+        <section class="section">
+            <h2>N-Caltech101</h2>
+            <h3 id="n-caltech101-count"></h3>
+            <p>The N-Caltech101 dataset is derived from the original Caltech101 dataset, transformed into a neuromorphic vision dataset through a process that simulates human saccadic eye movements. This process involves recording with a neuromorphic sensor that captures the dynamic visual information as the sensor views static images displayed on a screen through controlled movements. The dataset includes 101 different object classes with images of varied sizes, making it a challenging dataset for neuromorphic vision systems. It aims to provide a benchmark for testing and comparing neuromorphic vision algorithms, enabling a direct comparison with traditional computer vision approaches by utilizing a well-known dataset in a new form. This transformation process is designed to incorporate realistic sensor noise and dynamics, offering a robust platform for developing and testing vision algorithms tailored to neuromorphic sensors.</p>
+        </section>
+      </a>
+      <a href="benchmarks/nav-gesture.html">
+        <section class="section">
+            <h2>Nav-Gesture</h2>
+            <h3 id="nav-gesture-count"></h3>
+            <p>The Nav-Gesture dataset is a unique dataset created to facilitate the development and evaluation of gesture recognition algorithms using neuromorphic cameras. This dataset includes dynamic gestures performed under various real-world conditions, such as different lighting and backgrounds, with the camera held in selfie mode by the users. It features two subsets: NavGesture-sit, with gestures performed while seated, and NavGesture-walk, with gestures recorded while walking in urban environments. The dataset is designed to capture natural variations in gesture execution due to user movement and environmental factors, making it a challenging resource for testing gesture recognition systems in realistic scenarios.</p>
+        </section>
+      </a>
+      <script src="../count_datasets.js"></script>
     </main>
   </body>
 </html>

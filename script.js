@@ -12,11 +12,9 @@ const fetchData = async (filePath) => {
 };
 
 const populateTable = async () => {
-  console.log('OHHH')
   const dataName = document.currentScript.getAttribute('data-name');
   const filePath = `../data/${dataName}.json`;
   const data = await fetchData(filePath);
-  console.log(data)
   
   const table = document.querySelector('table');
   const tableBody = table.querySelector('tbody');
