@@ -25,14 +25,17 @@ const populateTable = async () => {
     const tableRow = document.createElement('tr');
 
     var tableCell = document.createElement('td');
+    tableCell.setAttribute('data-label', 'Title');
     tableCell.textContent = row["title"];
     tableRow.appendChild(tableCell);
 
-    tableCell = document.createElement('td');
+    var tableCell = document.createElement('td');
+    tableCell.setAttribute('data-label', 'Authors');
     tableCell.textContent = row["authors"];
     tableRow.appendChild(tableCell);
 
-    tableCell = document.createElement('td');
+    var tableCell = document.createElement('td');
+    tableCell.setAttribute('data-label', 'Accuracy');
     tableCell.textContent = row["accuracy"];
     tableRow.appendChild(tableCell);
 
