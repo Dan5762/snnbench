@@ -4,34 +4,39 @@
     "title": "Incorporating Learnable Membrane Time Constant to Enhance Learning of Spiking Neural Networks",
     "authors": "Wei Fang, Zhaofei Yu, Yanqi Chen, Timothee Masquelier, Tiejun Huang, Yonghong Tian",
     "neuron_count": "",
-    "accuracy": 99.61
+    "accuracy": 99.61,
+    "last_revised_date": "2021-08-17T00:00:00.000Z"
   },
   {
     "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2018.00331/full",
     "title": "Spatio-Temporal Backpropagation for Training High-Performance Spiking Neural Networks",
     "authors": "Yujie Wu, Lei Deng, Guoqi Li, Jun Zhu and Luping Shi",
     "neuron_count": "",
-    "accuracy": 98.34
+    "accuracy": 98.34,
+    "last_revised_date": "2018-05-23T00:00:00.000Z"
   },
   {
     "paper": "https://ieeexplore.ieee.org/document/7539039",
     "title": "Effective sensor fusion with event-based sensors and deep network architectures",
     "authors": "D. Neil and S. C. Liu",
     "neuron_count": "",
-    "accuracy": 95.72
+    "accuracy": 95.72,
+    "last_revised_date": "2016-05-25T00:00:00.000Z"
   },
   {
     "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00184/full",
     "title": "Skimming Digits: Neuromorphic Classification of Spike-Encoded Images",
     "authors": "G. K. Cohen, G. Orchard, S. H. Leng, J. Tapson, R. B. Benosman and A. Schaik",
     "neuron_count": 10000,
-    "accuracy": 92.87
+    "accuracy": 92.87,
+    "last_revised_date": "2016-04-28T00:00:00.000Z"
   },
   {
     "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00508/full",
     "title": "Training Deep Spiking Neural Networks Using Backpropagation",
-    "authors": "J. H. Lee ,T. Delbruck and M. Pfeiffer",
+    "authors": "J. H. Lee, T. Delbruck and M. Pfeiffer",
     "neuron_count": 800,
-    "accuracy": 98.66
+    "accuracy": 98.66,
+    "last_revised_date": "2016-11-08T00:00:00.000Z"
   }
 ]

@@ -38,6 +38,12 @@ const populateTable = async () => {
     tableRow.appendChild(tableCell);
 
     var tableCell = document.createElement('td');
+    tableCell.setAttribute('data-label', 'Year');
+    const datetime = new Date(row["last_revised_date"]);
+    tableCell.textContent = datetime.getFullYear();
+    tableRow.appendChild(tableCell);
+
+    var tableCell = document.createElement('td');
     tableCell.setAttribute('data-label', 'Neuron Count');
     tableCell.textContent = row["neuron_count"];
     tableRow.appendChild(tableCell);
