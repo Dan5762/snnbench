@@ -26,7 +26,7 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>SNN Benchmarks</title>
+    <title>SNN Home</title>
     <meta name="description" content="Public Benchmarking for Spiking Neural Networks">
     <meta name="author" content="Daniel Long">
     <meta property="og:title" content="SNN Benchmarks">
@@ -58,38 +58,20 @@
       </nav>
     </header>
     <main>
-      <section class="filter-selection">
-        <div>
-          <label for="dataset-select">Dataset:</label>
-          <select id="dataset-select" class="styled-select"></select>
-        </div>
-        <div>
-          <label for="approach-select">Approach:</label>
-          <select id="approach-select" class="styled-select"></select>
-        </div>
-      </section>
-      <section class="section" id="dataset-section">
-        <h2 id="dataset-name"></h2>
-        <h3 id="dataset-count"></h3>
-        <p id="dataset-description"></p>
-      </section>
-      <div class="container">
-        <table id="resultsTable">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Authors</th>
-              <th>Year</th>
-              <th>Neuron Count</th>
-              <th>Accuracy (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Rows will be added here by script.js -->
-          </tbody>
-        </table>
-      </div>
-      <script src="./script.js"></script>
+      <h2>Approaches</h2>
+      <p>There are many approaches to implementing learning within spiking neural networks, determining an ideal categorisation will likely be an ongoing challenge. The results presented on this site have been organised into following categories:</p>
+      <h3 class="pad-above">Supervised Learning</h3>
+      <p>These approaches use an error signal to directly modify weights, typically employing backpropagation or other direct feedback mechanisms.</p>
+      <h3 class="pad-above">Unsupervised Learning</h3>
+      <p>These methods learn from input data without labeled examples, using local learning rules like STDP to adjust synaptic weights based on spike timing.</p>
+      <h3 class="pad-above">Reinforcement Learning</h3>
+      <p>These approaches combine spike-based learning with reinforcement signals, using reward-modulated STDP or policy gradient methods to optimize behavior based on rewards.</p>
+      <h3 class="pad-above">Hybrid Learning</h3>
+      <p>These methods integrate supervised and unsupervised learning, often using unsupervised pre-training to learn features, followed by supervised fine-tuning for specific tasks.</p>
+      <h3 class="pad-above">Spike-Based Backpropagation Variants</h3>
+      <p>These variants adapt traditional backpropagation for spiking neurons, using surrogate gradients to handle the non-differentiable nature of spiking activity.</p>
+      <h3 class="pad-above">Resevoir Computing and Liquid State Machines</h3>
+      <p>These approaches use a fixed, randomly connected network (reservoir) to process inputs, training only the readout layer to leverage the reservoir’s dynamic response.</p>
     </main>
   </body>
 </html>

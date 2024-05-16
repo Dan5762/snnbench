@@ -1,0 +1,339 @@
+[
+  {
+    "paper": "https://arxiv.org/abs/2208.01204",
+    "last_revised_date": "2022-09-01T00:00:00.000Z",
+    "title": "Making a Spiking Net Work: Robust Brain-Like Unsupervised Machine Learning",
+    "authors": "Peter G. Stratton, Andrew Wabnitz, Chip Essam, Allen Cheung, Tara J. Hamilton",
+    "approaches": [
+      {
+        "category": "Unsupervised Learning",
+        "dataset": "MNIST",
+        "neuron_count": 12996,
+        "accuracy": 96.0,
+        "additional_details": ["BLiTNet with plastic balancing inhibition"]
+      },
+      {
+        "category": "Unsupervised Learning",
+        "dataset": "MNIST",
+        "neuron_count": 12996,
+        "accuracy": 97.69,
+        "additional_details": ["BLiTNet with linear decoder on the feature layer"]
+      },
+      {
+        "category": "Unsupervised Learning",
+        "dataset": "Logic Functions (NOT, XOR)",
+        "neuron_count": 3,
+        "accuracy": null,
+        "additional_details": ["Minimal SNN using network balance, constant input, and a distribution of feature neuron firing rates"]
+      }
+    ]
+  },
+  {
+    "paper": "https://arxiv.org/abs/2007.05785",
+    "last_revised_date": "2021-08-17T00:00:00.000Z",
+    "title": "Incorporating Learnable Membrane Time Constant to Enhance Learning of Spiking Neural Networks",
+    "authors": "Wei Fang, Zhaofei Yu, Yanqi Chen, Timothée Masquelier, Tiejun Huang, Yonghong Tian",
+    "approaches": [
+      {
+        "category": "Supervised Learning",
+        "dataset": "MNIST",
+        "neuron_count": 128,
+        "accuracy": 99.72,
+        "additional_details": ["PLIF neurons with membrane time constant learning"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "Fashion-MNIST",
+        "neuron_count": 128,
+        "accuracy": 94.38,
+        "additional_details": ["PLIF neurons with membrane time constant learning"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "CIFAR-10",
+        "neuron_count": 256,
+        "accuracy": 93.5,
+        "additional_details": ["PLIF neurons with membrane time constant learning"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "N-MNIST",
+        "neuron_count": 128,
+        "accuracy": 99.61,
+        "additional_details": ["PLIF neurons with membrane time constant learning"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "CIFAR10-DVS",
+        "neuron_count": 128,
+        "accuracy": 74.8,
+        "additional_details": ["PLIF neurons with membrane time constant learning"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "DVS128 Gesture",
+        "neuron_count": 128,
+        "accuracy": 97.57,
+        "additional_details": ["PLIF neurons with membrane time constant learning"]
+      }
+    ]
+  },
+  {
+    "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2018.00331/full",
+    "last_revised_date": "2018-05-23T00:00:00.000Z",
+    "title": "Spatio-Temporal Backpropagation for Training High-Performance Spiking Neural Networks",
+    "authors": "Yujie Wu, Lei Deng, Guoqi Li, Jun Zhu, Luping Shi",
+    "approaches": [
+      {
+        "category": "Supervised Learning",
+        "dataset": "MNIST",
+        "neuron_count": 800,
+        "accuracy": 98.89,
+        "additional_details": ["STBP method with error normalization and parameter regularization"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "Object Detection Dataset",
+        "neuron_count": 400,
+        "accuracy": 98.34,
+        "additional_details": ["STBP method without complex training skills"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "N-MNIST",
+        "neuron_count": 800,
+        "accuracy": 98.78,
+        "additional_details": ["STBP method without complex training skills"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "MNIST",
+        "neuron_count": 800,
+        "accuracy": 99.42,
+        "additional_details": ["Spiking CNN with STBP method"]
+      },
+      {
+        "category": "Supervised Learning",
+        "dataset": "Object Detection Dataset",
+        "neuron_count": 400,
+        "accuracy": 98.59,
+        "additional_details": ["Spiking CNN with STBP method"]
+      }
+    ]
+  },
+  {
+    "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2013.00178/full",
+    "last_revised_date": "2013-10-08T00:00:00.000Z",
+    "title": "Real-time classification and sensor fusion with a spiking deep belief network",
+    "authors": "Peter O’Connor, Daniel Neil, Shih-Chii Liu, Tobi Delbruck, Michael Pfeiffer",
+    "approaches": [
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "MNIST",
+        "neuron_count": 2694,
+        "accuracy": 94.09,
+        "additional_details": ["Event-driven spiking neural network", "Siegert approximation for Integrate-and-Fire neurons", "Simulated spike-train inputs", "Real-time implementation using Dynamic Vision Sensor (DVS)"]
+      },
+      {
+        "category": "Reservoir Computing and Liquid State Machines",
+        "dataset": "MNIST with visual and auditory input",
+        "neuron_count": 2694,
+        "accuracy": null,
+        "additional_details": ["Multi-sensory fusion with visual input from DVS and auditory input from AER-EAR silicon cochlea", "Real-time classification and sensor fusion"]
+      }
+    ]
+  },
+  {
+    "paper": "https://arxiv.org/abs/1510.08829",
+    "last_revised_date": "2015-10-29T00:00:00.000Z",
+    "title": "Spiking Deep Networks with LIF Neurons",
+    "authors": "Eric Hunsberger, Chris Eliasmith",
+    "approaches": [
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "CIFAR-10",
+        "neuron_count": 57606,
+        "accuracy": 82.95,
+        "additional_details": ["Leaky Integrate-and-Fire (LIF) neurons", "Training with noise", "Softened LIF response function"]
+      },
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "MNIST",
+        "neuron_count": 700,
+        "accuracy": 98.37,
+        "additional_details": ["Leaky Integrate-and-Fire (LIF) neurons", "Training with noise", "Softened LIF response function"]
+      }
+    ]
+  },
+  {
+    "paper": "https://ieeexplore.ieee.org/document/7280696",
+    "last_revised_date": "2015-07-17T00:00:00.000Z",
+    "title": "Fast-Classifying, High-Accuracy Spiking Deep Networks Through Weight and Threshold Balancing",
+    "authors": "Peter U. Diehl, Daniel Neil, Jonathan Binas, Matthew Cook, Shih-Chii Liu, Michael Pfeiffer",
+    "approaches": [
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "MNIST",
+        "neuron_count": 15000,
+        "accuracy": 99.12,
+        "additional_details": ["Optimization techniques for converting ANNs to SNNs", "Weight and threshold balancing"]
+      },
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "CIFAR-10",
+        "neuron_count": 15000,
+        "accuracy": 82.5,
+        "additional_details": ["Optimization techniques for converting ANNs to SNNs", "Weight and threshold balancing"]
+      }
+    ]
+  },
+  {
+    "paper": "https://arxiv.org/abs/1602.08323",
+    "last_revised_date": "2016-11-07T00:00:00.000Z",
+    "title": "Deep Spiking Networks",
+    "authors": "Peter O’Connor, Max Welling",
+    "approaches": [
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "MNIST",
+        "neuron_count": 300,
+        "accuracy": 96.4,
+        "additional_details": [
+          "Spiking Multi-Layer Perceptron (MLP)",
+          "Fractional Stochastic Gradient Descent (FSGD)",
+          "Early guessing capability",
+          "Data-dependent computation",
+          "Training without multiplications, only addition, comparison, and indexing operations"
+        ]
+      },
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "20 Newsgroups (electronics vs. medical)",
+        "neuron_count": null,
+        "accuracy": 97.72,
+        "additional_details": [
+          "Spiking Vector Quantization",
+          "Real-time classification capability"
+        ]
+      },
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "Not specified",
+        "neuron_count": null,
+        "accuracy": null,
+        "additional_details": [
+          "Spiking Stream Quantization",
+          "Rectified Spiking Stream Quantization"
+        ]
+      }
+    ]
+  },
+  {
+    "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00508/full",
+    "last_revised_date": "2016-11-08T00:00:00.000Z",
+    "title": "Training Deep Spiking Neural Networks Using Backpropagation",
+    "authors": "Jun Haeng Lee, Tobi Delbruck, Michael Pfeiffer",
+    "approaches": [
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "MNIST",
+        "neuron_count": 784,
+        "accuracy": 98.77,
+        "additional_details": [
+          "Event-driven updates",
+          "Directly trained on spike signals",
+          "Weight and threshold balancing",
+          "Regularization and normalization techniques"
+        ]
+      },
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "N-MNIST",
+        "neuron_count": 784,
+        "accuracy": 98.66,
+        "additional_details": [
+          "Direct training on event-based sensor data",
+          "Dynamic spatio-temporal pattern recognition",
+          "Higher accuracy with fewer computational operations",
+          "Data-driven event-based computation"
+        ]
+      }
+    ]
+  },
+  {
+    "paper": "https://arxiv.org/abs/2208.01204",
+    "title": "Making a Spiking Net Work: Robust brain-like unsupervised machine learning",
+    "authors": "P. G. Stratton, A. Wabnitz, C. Essam, A. Cheung and T. J. Hamilton",
+    "last_revised_date": "2022-09-01T00:00:00.000Z",
+    "approaches": [
+      {
+        "category": "Unsupervised Learning",
+        "dataset": "MNIST",
+        "neuron_count": 12996,
+        "accuracy": 96,
+        "additional_details": [
+          "Achieved with unsupervised STDP for feature extraction",
+          "Spike forcing is used in the output layer for supervised readout"
+        ]
+      },
+      {
+        "category": "Hybrid Learning",
+        "dataset": "MNIST",
+        "neuron_count": 12996,
+        "additional_details": [
+          "Feature layers are trained using unsupervised STDP",
+          "The output layer is trained using linear decoder"
+        ],
+        "accuracy": 97.69
+      }
+    ]
+  },
+  {
+    "paper": "https://ieeexplore.ieee.org/document/7539039",
+    "last_revised_date": "2016-05-25T00:00:00.000Z",
+    "title": "Effective Sensor Fusion with Event-Based Sensors and Deep Network Architectures",
+    "authors": "Daniel Neil, Shih-Chii Liu",
+    "approaches": [
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "MNIST",
+        "neuron_count": null,
+        "accuracy": 98.31,
+        "additional_details": [
+          "Spiking hardware retina with 1000 visual input spikes",
+          "Deep fusion network composed of Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs)"
+        ]
+      },
+      {
+        "category": "Spike-Based Backpropagation Variants",
+        "dataset": "TIDIGITS",
+        "neuron_count": null,
+        "accuracy": null,
+        "additional_details": [
+          "Spiking hardware cochlea",
+          "Deep fusion network composed of CNNs and RNNs",
+          "Significant performance improvement when combined with visual input from MNIST"
+        ]
+      }
+    ]
+  },
+  {
+    "paper": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00184/full",
+    "last_revised_date": "2016-04-28T00:00:00.000Z",
+    "title": "Skimming Digits: Neuromorphic Classification of Spike-Encoded Images",
+    "authors": "Gregory K. Cohen, Garrick Orchard, Sio-Hoi Leng, Jonathan Tapson, Ryad B. Benosman, André van Schaik",
+    "approaches": [
+      {
+        "category": "Supervised Learning",
+        "dataset": "N-MNIST",
+        "neuron_count": 10000,
+        "accuracy": 92.87,
+        "additional_details": [
+          "Synaptic Kernel Inverse Method (SKIM)",
+          "Event-based data",
+          "Square pulse as supervisory training signal"
+        ]
+      }
+    ]
+  }
+]
