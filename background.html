@@ -58,38 +58,20 @@
       </nav>
     </header>
     <main>
-      <section class="filter-selection">
-        <div>
-          <label for="dataset-select">Dataset:</label>
-          <select id="dataset-select" class="styled-select"></select>
-        </div>
-        <div>
-          <label for="approach-select">Approach:</label>
-          <select id="approach-select" class="styled-select"></select>
-        </div>
-      </section>
-      <section class="section" id="dataset-section">
-        <h2 id="dataset-name"></h2>
-        <h3 id="dataset-count"></h3>
-        <p id="dataset-description"></p>
-      </section>
-      <div class="container">
-        <table id="resultsTable">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Authors</th>
-              <th>Year</th>
-              <th>Neuron Count</th>
-              <th>Accuracy (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Rows will be added here by script.js -->
-          </tbody>
-        </table>
-      </div>
-      <script src="./script.js"></script>
+      <h2>Background</h2>
+      <p></p>
+      <a href="approaches.html">
+        <section class="section" id="dataset-section">
+          <h2>Approaches</h2>
+          <p>There are many approaches to implementing learning within spiking neural networks, determining an ideal categorisation will likely be an ongoing challenge. Here we describe the current categorisation of the approaches benchmarked on this site.</p>
+        </section>
+      </a>
+      <a href="neuron_models.html">
+        <section class="section" id="neuron-models-section">
+          <h2>Neuron Models</h2>
+          <p>Over the years many neuron models have been proposed, on this page various popular models are presented.</p>
+        </section>
+      </a>
     </main>
   </body>
 </html>
