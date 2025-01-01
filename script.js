@@ -53,8 +53,6 @@ const getDatasetOptions = async () => {
     datasetOptions.push(dataset.name);
   });
 
-  const datasetSelect = document.getElementById('dataset-select');
-
   datasetOptions.forEach((dataset) => {
     const option = document.createElement('option');
     option.value = dataset;
@@ -92,49 +90,104 @@ const populateDatasetTable = async () => {
 
   console.log(approaches);
   
-  const table = document.querySelector('table');
-  const tableBody = table.querySelector('tbody');
-  tableBody.innerHTML = '';
+  // Store table data globally
+  let currentApproaches = [];
+  let sortDirections = { 2: 'desc', 3: 'desc', 4: 'desc' }; // columns for Year, Neuron Count, Accuracy
 
-  approaches.forEach((row) => {
-    const tableRow = document.createElement('tr');
-
-    var tableCell = document.createElement('td');
-    tableCell.setAttribute('data-label', 'Title');
-    tableCell.textContent = row["title"];
-    tableRow.appendChild(tableCell);
-
-    var tableCell = document.createElement('td');
-    tableCell.setAttribute('data-label', 'Authors');
-    tableCell.textContent = row["authors"];
-    tableRow.appendChild(tableCell);
-
-    var tableCell = document.createElement('td');
-    tableCell.setAttribute('data-label', 'Year');
-    const datetime = new Date(row["last_revised_date"]);
-    tableCell.textContent = datetime.getFullYear();
-    tableRow.appendChild(tableCell);
-
-    var tableCell = document.createElement('td');
-    tableCell.setAttribute('data-label', 'Neuron Count');
-    tableCell.textContent = row["neuron_count"];
-    tableRow.appendChild(tableCell);
-
-    var tableCell = document.createElement('td');
-    tableCell.setAttribute('data-label', 'Accuracy');
-    tableCell.textContent = row["accuracy"];
-    tableRow.appendChild(tableCell);
-
-    tableRow.addEventListener('click', () => {
-      window.location.href = row["paper"];
+  function attachSortHandlers() {
+    const table = document.querySelector('table');
+    // For each sortable column: Year(2), Neuron(3), Accuracy(4)
+    [2, 3, 4].forEach((colIndex) => {
+      table.querySelector(`th:nth-child(${colIndex+1})`)
+        .addEventListener('click', () => sortColumn(colIndex));
     });
+  }
 
-    tableRow.addEventListener('mouseover', () => {
-      tableRow.style.cursor = 'pointer';
-    });
+  function sortColumn(colIndex) {
+    console.log('Sorting column index:', colIndex, 'Current direction:', sortDirections[colIndex]);
+    // Flip sort direction
+    sortDirections[colIndex] = sortDirections[colIndex] === 'asc' ? 'desc' : 'asc';
+    console.log('New direction for column:', colIndex, 'is now:', sortDirections[colIndex]);
   
-    tableBody.appendChild(tableRow);
-  });
+    currentApproaches.sort((a, b) => {
+      const valA = colIndex === 2 ? new Date(a.last_revised_date) : a[colIndex === 3 ? 'neuron_count' : 'accuracy'];
+      const valB = colIndex === 2 ? new Date(b.last_revised_date) : b[colIndex === 3 ? 'neuron_count' : 'accuracy'];
+      return sortDirections[colIndex] === 'asc' ? valA - valB : valB - valA;
+    });
+
+    const table = document.querySelector('table');
+    const colMap = { 2: 0, 3: 1, 4: 2 };
+    const indicators = table.querySelectorAll('.sort-indicator');
+
+    console.log('Indicators found:', indicators.length);
+    indicators.forEach((ind, i) => {
+      console.log('Before update -> Indicator index:', i, 'Class list:', ind.classList);
+      ind.classList.remove('up','down','inactive');
+      if (i === colMap[colIndex]) {
+        if (sortDirections[colIndex] === 'asc') {
+          ind.classList.add('up');
+        } else {
+          ind.classList.add('down');
+        }
+      } else {
+        ind.classList.add('inactive');
+      }
+      console.log('After update -> Indicator index:', i, 'Class list:', ind.classList);
+    });
+
+    console.log('sortDirections:', sortDirections);
+    renderApproaches(); // Rebuild table rows
+  }
+
+  // Rebuild table rows using currentApproaches
+  function renderApproaches() {
+    const tableBody = document.querySelector('table tbody');
+    tableBody.innerHTML = '';
+    currentApproaches.forEach((row) => {
+      const tableRow = document.createElement('tr');
+
+      var tableCell = document.createElement('td');
+      tableCell.setAttribute('data-label', 'Title');
+      tableCell.textContent = row["title"];
+      tableRow.appendChild(tableCell);
+
+      var tableCell = document.createElement('td');
+      tableCell.setAttribute('data-label', 'Authors');
+      tableCell.textContent = row["authors"];
+      tableRow.appendChild(tableCell);
+
+      var tableCell = document.createElement('td');
+      tableCell.setAttribute('data-label', 'Year');
+      const datetime = new Date(row["last_revised_date"]);
+      tableCell.textContent = datetime.getFullYear();
+      tableRow.appendChild(tableCell);
+
+      var tableCell = document.createElement('td');
+      tableCell.setAttribute('data-label', 'Neuron Count');
+      tableCell.textContent = row["neuron_count"];
+      tableRow.appendChild(tableCell);
+
+      var tableCell = document.createElement('td');
+      tableCell.setAttribute('data-label', 'Accuracy');
+      tableCell.textContent = row["accuracy"];
+      tableRow.appendChild(tableCell);
+
+      tableRow.addEventListener('click', () => {
+        window.location.href = row["paper"];
+      });
+
+      tableRow.addEventListener('mouseover', () => {
+        tableRow.style.cursor = 'pointer';
+      });
+
+      // Make sure any use of tableRow (e.g., event listeners) stays inside this block
+      tableBody.appendChild(tableRow);
+    });
+  }
+
+  currentApproaches = approaches;
+  renderApproaches();
+  attachSortHandlers();
 
   const datasetDescription = document.getElementById(`dataset-count`);
   datasetDescription.textContent = `Benchmarked: ${approaches.length}`;
@@ -146,11 +199,9 @@ const populateDatasetDescription = async () => {
   var datasetInfo = datasets.find((data) => data.name === selectedDataset);
 
   const datasetSection = document.getElementById(`dataset-section`);
+  datasetSection.style.cursor = 'pointer';
   datasetSection.addEventListener('click', () => {
     window.location.href = datasetInfo.url;
-  });
-  datasetSection.addEventListener('mouseover', () => {
-    tableRow.style.cursor = 'pointer';
   });
 
   const datasetTitle = document.getElementById(`dataset-name`);

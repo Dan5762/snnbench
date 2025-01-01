@@ -1,4 +1,3 @@
-
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
@@ -73,25 +72,25 @@
       </section>
       <section class="section" id="dataset-section">
         <h2 id="dataset-name"></h2>
-        <h3 id="dataset-count"></h3>
+        <h3 id="dataset-count"></h3>  
         <p id="dataset-description"></p>
       </section>
-      <div class="container">
-        <table id="resultsTable">
+      <section class="table">
+        <table>
           <thead>
             <tr>
               <th>Title</th>
               <th>Authors</th>
-              <th>Year</th>
-              <th>Neuron Count</th>
-              <th>Accuracy (%)</th>
+              <th>Year <span class="sort-indicator inactive"></span></th>
+              <th>Neuron Count <span class="sort-indicator inactive"></span></th>
+              <th>Accuracy (%) <span class="sort-indicator inactive"></span></th>
             </tr>
           </thead>
           <tbody>
             <!-- Rows will be added here by script.js -->
           </tbody>
         </table>
-      </div>
+      </section>
       <script src="./script.js"></script>
     </main>
   </body>

@@ -1,12 +1,8 @@
 table {
+  width: 100%;
   border: 1px solid #ccc;
   border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
   table-layout: fixed;
-  box-shadow: none;
-  text-shadow: none;
 }
 
 table caption {
@@ -15,10 +11,9 @@ table caption {
 }
 
 table tr {
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #ddd;
   padding: .35em;
-  cursor: pointer;
 }
 
 table th,
@@ -34,6 +29,51 @@ table th {
   text-transform: uppercase;
 }
 
+table th:has(.sort-indicator) {
+  cursor: pointer;
+}
+
+.sort-indicator {
+  position: relative;
+  width: 8px;
+  height: 14px; /* increased for extra spacing */
+  margin-left: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.sort-indicator::before,
+.sort-indicator::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+.sort-indicator::before {
+  top: 0; /* pin to top */
+  border-bottom: 4px solid #666; /* up arrow */
+}
+.sort-indicator::after {
+  bottom: 0; /* pin to bottom */
+  border-top: 4px solid #666; /* down arrow */
+}
+.sort-indicator.inactive {
+  opacity: 0.3; /* lower opacity for both arrows */
+}
+.sort-indicator.up::before {
+  border-bottom-color: #000; /* top arrow black */
+}
+.sort-indicator.up::after {
+  border-top-color: #ccc; /* bottom arrow grey */
+}
+.sort-indicator.down::before {
+  border-bottom-color: #ccc; /* top arrow grey */
+}
+.sort-indicator.down::after {
+  border-top-color: #000; /* bottom arrow black */
+}
+
 @media screen and (max-width: 30em) {
   table {
     border: 0;
@@ -44,7 +84,6 @@ table th {
   }
   
   table thead {
-    border: none;
     clip: rect(0 0 0 0);
     height: 1px;
     margin: -1px;
@@ -55,16 +94,16 @@ table th {
   }
   
   table tr {
-    border-bottom: 3px solid #ddd;
     display: block;
     margin-bottom: .625em;
+    border-bottom: 3px solid #ddd;
   }
   
   table td {
-    border-bottom: 1px solid #ffffff;
     display: block;
     font-size: .8em;
     text-align: right;
+    border-bottom: 1px solid #fff;
   }
   
   table td::before {
