@@ -1,0 +1,39 @@
+.pad-above {
+  margin-top: 20px;
+}
+
+.filter-selection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.styled-select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5H7z" fill="%23333"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+}
+
+.styled-select:focus {
+  border-color: #aaa;
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .dataset-selection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .styled-select {
+    width: 100%;
+  }
+}

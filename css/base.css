@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Satoshi";
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(../font/Satoshi-Regular.woff2) format("woff2"), url(../font/Satoshi-Regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(../font/Satoshi-Bold.woff2) format("woff2"), url(../font/Satoshi-Bold.woff) format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+:root {
+  --unit: 8px;
+  --line-height: 1.5;
+  --backgroundColor: #fff;
+  --altBackgroundColor: #1A1715;
+  --backgroundColorHover: #332D29;
+  --borderColor: #000;
+  --textColor: #282828;
+  --altTextColor: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+body {
+  font-family: "Satoshi", sans-serif;
+  font-size: calc(var(--unit) * 2);
+  font-weight: 400;
+  line-height: var(--line-height);
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
+  -webkit-text-size-adjust: none;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0 12px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+a {
+  cursor: pointer;
+  color: var(--textColor);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    padding: 0 12px;
+  }
+}
