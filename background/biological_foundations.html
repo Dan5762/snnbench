@@ -1,0 +1,81 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  
+    <link rel="manifest" href="/manifest.json">
+  
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>SNN Benchmarks</title>
+    <meta name="description" content="Public Benchmarking for Spiking Neural Networks">
+    <meta name="author" content="Daniel Long">
+    <meta property="og:title" content="SNN Benchmarks">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snnbench.com">
+    <meta property="og:description" content="Public Benchmarking for Spiking Neural Networks">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQ1SQVV1YL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YQ1SQVV1YL');
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/tables.css">
+    <link rel="stylesheet" type="text/css" href="/css/components.css">
+  </head>
+  <body>
+    <header>
+      <h1>Spiking Neural Network Benchmarks</h1>
+      <nav>
+        <ul>
+          <li><a target="_blank" href="/index.html">Benchmarks</a></li>
+          <li><a target="_blank" href="/background.html">Background</a></li>
+          <li><a target="_blank" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <p>Spiking Neural Networks (SNNs) are biologically inspired models that mimic the temporal information processing of biological neurons through discrete spikes (<a target="_blank" href="https://research-portal.uu.nl/en/publications/spiking-neural-networks-an-introduction">Vreeken, 2003</a>). Unlike the first two generations of artificial neural networks, SNNs offer encode information in spike timing rather than just average firing rates (<a target="_blank" href="https://pure.ulster.ac.uk/ws/portalfiles/portal/77672572/Manuscript_AB.pdf">Taherkhani et al., 2019</a>; <a target="_blank" href="https://doi.org/10.55782/ane-2011-1862">Ponulak & Kasinski, 2011</a>). In this guide we will explore the biological foundations of spiking neural networks from the biophysics of a bioligical neuron to the metastable behaviour of the human brain.</p>
+      </br>
+      <h2>Biological Brains</h2>
+      <p>Recent studies using advanced cell-counting techniques, such as the isotropic fractionator method, estimate that the average adult human brain contains approximately 86 billion neurons (<a target="_blank" href="https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/neuro.09.031.2009/full">Herculano-Houzel, 2009</a>). In addition to this vast number of neurons, the human brain also contains approximately 85 billion non-neuronal cells, such as glial cells, which provide support and protection for neurons (<a target="_blank" href="https://www.pnas.org/doi/10.1073/pnas.1201895109">Herculano-Houzel, 2012</a>).</p>
+      <p>In terms of mass the human brain weighs around 1.5kg, with 82% of this mass belonging to the outer part of the brain known as the cerebral cortex. It is interesting to note that neuron count is only one part of the picture however as the cerebral cortex has only around 19% of the brain's neurons (<a target="_blank" href="https://www.pnas.org/doi/10.1073/pnas.1201895109">Herculano-Houzel, 2012</a>).</p>
+      <p>The key missing piece to the brain's complexity lies in it's interconnectedness with each of these 86 billion neurons typically connected to on average more than 10,000 post synaptic neurons (<a href="https://www.cambridge.org/core/books/spiking-neuron-models/76A3FC77EC2D24CDD91E29EBB23ADB0B" target="_blank">Wulfram Gerstner, 2002</a>). This complexity is far from homogeneous however, with the brain having specialised regions that have different functions and evolutionary histories. The most complex and relatively unique to developed brains is the previously mentioned Cerebral Cortex where neurons have on arvage around 50,000 postsynaptic neurons.</p>
+      <p>Another important region of the brain is the cerebellum which is responsible for motor control and coordination. The cerebellum contains around 69 billion neurons, which is more than the cerebral cortex, but is much smaller in terms of mass (<a target="_blank" href="https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/neuro.09.031.2009/full">Herculano-Houzel, 2009</a>). The cerebellum is also unique in that it contains a large number of neurons called Purkinje cells which are some of the largest neurons in the brain.</p>
+      <p>Another remarkable property of the brain is both it's relative energy consumpton and it's efficiency. The human brain consumes around 25% of total body's energetic cost, which is incredibly high, suggesting evolution has fought hard against the trade-off of intelligence and energetic costs. On the other hand it is remarkable low compared to modern computing hardware, at around 20W the human brain uses far less energy than large language models such as GPT-3, which require over 1000 MW-hours to train (around 500 million human brain hours) (<a href="https://arxiv.org/abs/2210.08340" target="_blank">Zador, 2022</a>).</p>
+      <h2>Biological Neurons</h2>
+      <figure class="content-image-container">
+        <img src="/background/media/bio_neuron.png" alt="Biological neuron diagram" class="content-image">
+        <figcaption>Structure of a biological neuron showing dendrites, cell body, and axon</figcaption>
+      </figure>
+      <h2>Spiking Neuron Models</h2>
+      <h2>Network Topologies and Collective Behaviour</h2>
+      <h2>Implementation, Simulation and Applications of SNNs</h2>
+    </main>
+  </body>
+</html>

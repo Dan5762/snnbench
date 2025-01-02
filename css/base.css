@@ -11,7 +11,16 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(../font/Satoshi-Bold.woff2) format("woff2"), url(../font/Satoshi-Bold.woff) format("woff");
+  src: local('Pacifico Medium'), local('Pacifico-Medium'), url(../font/Satoshi-Medium.woff2) format("woff2"), url(../font/Satoshi-Medium.woff) format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: local('Pacifico Bold'), local('Pacifico-Bold'), url(../font/Satoshi-Bold.woff2) format("woff2"), url(../font/Satoshi-Bold.woff) format("woff");
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -56,8 +65,44 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-bottom: calc(var(--unit));
+}
+
+p a {
+  font-weight: 500;
+  color: var(--textColor);
+}
+
+.content-image-container {
+  max-width: 400px;
+  float: right;
+  margin: 0 0 var(--unit) calc(var(--unit) * 2);
+  background-color: #f8f8f8;
+  padding: 8px;
+}
+
+.content-image {
+  max-width: 100%;
+  margin: 0;
+  display: block;
+}
+
+figcaption {
+  font-size: 0.9em;
+  text-align: center;
+  padding-top: 6px;
+  color: #666;
+}
+
 @media screen and (max-width: 800px) {
   body {
     padding: 0 12px;
+  }
+  .content-image-container {
+    float: none;
+    display: block;
+    margin: var(--unit) auto;
+    width: 100%;
   }
 }
