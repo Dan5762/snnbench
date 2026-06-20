@@ -1,18 +1,13 @@
 // script.js
-// fetch data from file
+// Renders the benchmark table from data/datasets.json and data/papers.json.
 
-var selectedDataset = "MNIST";
-var datasetOptions = [];
+const SORTABLE_COLUMNS = {
+  2: { key: 'last_revised_date', type: 'date' },
+  3: { key: 'neuron_count', type: 'number' },
+  4: { key: 'accuracy', type: 'number' },
+};
 
-const datasetSelect = document.getElementById('dataset-select');
-datasetSelect.addEventListener('change', (event) => {
-  selectedDataset = event.target.value;
-  populateDatasetDescription();
-  populateDatasetTable();
-});
-
-var selectedApproach = "All";
-var approachOptions = [
+const approachOptions = [
   "All",
   "Supervised Learning",
   "Unsupervised Learning",
@@ -21,23 +16,28 @@ var approachOptions = [
   "Spike-Based Backpropagation Variants",
   "Reservoir Computing and Liquid State Machines",
 ];
+
+const datasetSelect = document.getElementById('dataset-select');
 const approachSelect = document.getElementById('approach-select');
-approachOptions.forEach((dataset) => {
-  const option = document.createElement('option');
-  option.value = dataset;
-  option.textContent = dataset;
-  approachSelect.appendChild(option);
-});
-approachSelect.addEventListener('change', (event) => {
-  selectedApproach = event.target.value;
-  populateDatasetTable();
-});
 
+let selectedDataset = "MNIST";
+let selectedApproach = "All";
 
-const fetchData = async (filePath) => {
+// Sorted rows currently shown, plus the active sort state.
+let currentApproaches = [];
+let activeSort = { colIndex: 4, direction: 'desc' };
+
+// Cache the fetched JSON so we don't re-request on every filter change.
+let datasetsCache = null;
+let papersCache = null;
+
+const fetchData = async (filePath, cacheRef) => {
+  if (cacheRef && cacheRef.value) return cacheRef.value;
   try {
     const response = await fetch(filePath);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
+    if (cacheRef) cacheRef.value = data;
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -45,173 +45,192 @@ const fetchData = async (filePath) => {
   }
 };
 
-const getDatasetOptions = async () => {
-  var datasets = await fetchData("./data/datasets.json");
+const datasetsRef = { value: null };
+const papersRef = { value: null };
 
-  datasetOptions = [];
-  datasets.forEach((dataset) => {
-    datasetOptions.push(dataset.name);
-  });
+const getDatasets = () => fetchData("./data/datasets.json", datasetsRef);
+const getPapers = () => fetchData("./data/papers.json", papersRef);
 
-  datasetOptions.forEach((dataset) => {
-    const option = document.createElement('option');
-    option.value = dataset;
-    option.textContent = dataset;
-    datasetSelect.appendChild(option);
+// Compare helper that always pushes null/undefined to the bottom.
+const compareValues = (a, b, type, direction) => {
+  const missingA = a === null || a === undefined || a === '';
+  const missingB = b === null || b === undefined || b === '';
+  if (missingA && missingB) return 0;
+  if (missingA) return 1;
+  if (missingB) return -1;
+
+  let valA = a;
+  let valB = b;
+  if (type === 'date') {
+    valA = new Date(a).getTime();
+    valB = new Date(b).getTime();
+  }
+  return direction === 'asc' ? valA - valB : valB - valA;
+};
+
+const sortApproaches = () => {
+  const { colIndex, direction } = activeSort;
+  const { key, type } = SORTABLE_COLUMNS[colIndex];
+  currentApproaches.sort((a, b) => compareValues(a[key], b[key], type, direction));
+};
+
+const updateSortIndicators = () => {
+  const indicators = document.querySelectorAll('.sort-indicator');
+  const colMap = { 2: 0, 3: 1, 4: 2 };
+  indicators.forEach((ind, i) => {
+    ind.classList.remove('up', 'down', 'inactive');
+    if (i === colMap[activeSort.colIndex]) {
+      ind.classList.add(activeSort.direction === 'asc' ? 'up' : 'down');
+    } else {
+      ind.classList.add('inactive');
+    }
   });
-}
+};
+
+const renderApproaches = () => {
+  const tableBody = document.querySelector('table tbody');
+  tableBody.innerHTML = '';
+
+  const fragment = document.createDocumentFragment();
+  currentApproaches.forEach((row) => {
+    const tableRow = document.createElement('tr');
+    tableRow.tabIndex = 0;
+    tableRow.setAttribute('role', 'link');
+    if (row.paper) tableRow.setAttribute('aria-label', `${row.title} — open paper`);
+
+    const year = row.last_revised_date
+      ? new Date(row.last_revised_date).getFullYear()
+      : '';
+    const accuracy = (row.accuracy === null || row.accuracy === undefined)
+      ? '—'
+      : row.accuracy;
+
+    const cells = [
+      ['Title', row.title],
+      ['Authors', row.authors],
+      ['Year', year],
+      ['Neuron Count', row.neuron_count],
+      ['Accuracy', accuracy],
+    ];
+    cells.forEach(([label, value]) => {
+      const td = document.createElement('td');
+      td.setAttribute('data-label', label);
+      td.textContent = value ?? '';
+      tableRow.appendChild(td);
+    });
+
+    if (row.paper) {
+      const openPaper = () => { window.location.href = row.paper; };
+      tableRow.addEventListener('click', openPaper);
+      tableRow.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openPaper();
+        }
+      });
+    }
+
+    fragment.appendChild(tableRow);
+  });
+  tableBody.appendChild(fragment);
+};
+
+// Attached once, on load. Clicking a sortable header toggles its direction.
+const attachSortHandlers = () => {
+  const table = document.querySelector('table');
+  Object.keys(SORTABLE_COLUMNS).forEach((colIndex) => {
+    const index = Number(colIndex);
+    const th = table.querySelector(`th:nth-child(${index + 1})`);
+    th.addEventListener('click', () => {
+      if (activeSort.colIndex === index) {
+        activeSort.direction = activeSort.direction === 'asc' ? 'desc' : 'asc';
+      } else {
+        activeSort = { colIndex: index, direction: 'desc' };
+      }
+      sortApproaches();
+      updateSortIndicators();
+      renderApproaches();
+    });
+  });
+};
 
 const populateDatasetTable = async () => {
-  var papers = await fetchData("./data/papers.json");
+  const papers = await getPapers();
 
-  console.log(papers);
-
-  // Filter data by approach dataset
-  var approaches = [];
+  const approaches = [];
   papers.forEach((paper) => {
     paper.approaches.forEach((approach) => {
-      if (selectedApproach == "All" || approach.category === selectedApproach) {
-        if (approach.dataset === selectedDataset) {
-          approach["title"] = paper.title;
-          approach["authors"] = paper.authors;
-          approach["last_revised_date"] = paper.last_revised_date;
-          approach["paper"] = paper.paper;
-          
-          approaches.push(approach);
-        }
+      const matchesApproach = selectedApproach === "All" || approach.category === selectedApproach;
+      if (matchesApproach && approach.dataset === selectedDataset) {
+        approaches.push({
+          ...approach,
+          title: paper.title,
+          authors: paper.authors,
+          last_revised_date: paper.last_revised_date,
+          paper: paper.paper,
+        });
       }
     });
   });
-
-  // sort data by accuracy
-  approaches.sort((a, b) => {
-    return b["accuracy"] - a["accuracy"];
-  });
-
-  console.log(approaches);
-  
-  // Store table data globally
-  let currentApproaches = [];
-  let sortDirections = { 2: 'desc', 3: 'desc', 4: 'desc' }; // columns for Year, Neuron Count, Accuracy
-
-  function attachSortHandlers() {
-    const table = document.querySelector('table');
-    // For each sortable column: Year(2), Neuron(3), Accuracy(4)
-    [2, 3, 4].forEach((colIndex) => {
-      table.querySelector(`th:nth-child(${colIndex+1})`)
-        .addEventListener('click', () => sortColumn(colIndex));
-    });
-  }
-
-  function sortColumn(colIndex) {
-    console.log('Sorting column index:', colIndex, 'Current direction:', sortDirections[colIndex]);
-    // Flip sort direction
-    sortDirections[colIndex] = sortDirections[colIndex] === 'asc' ? 'desc' : 'asc';
-    console.log('New direction for column:', colIndex, 'is now:', sortDirections[colIndex]);
-  
-    currentApproaches.sort((a, b) => {
-      const valA = colIndex === 2 ? new Date(a.last_revised_date) : a[colIndex === 3 ? 'neuron_count' : 'accuracy'];
-      const valB = colIndex === 2 ? new Date(b.last_revised_date) : b[colIndex === 3 ? 'neuron_count' : 'accuracy'];
-      return sortDirections[colIndex] === 'asc' ? valA - valB : valB - valA;
-    });
-
-    const table = document.querySelector('table');
-    const colMap = { 2: 0, 3: 1, 4: 2 };
-    const indicators = table.querySelectorAll('.sort-indicator');
-
-    console.log('Indicators found:', indicators.length);
-    indicators.forEach((ind, i) => {
-      console.log('Before update -> Indicator index:', i, 'Class list:', ind.classList);
-      ind.classList.remove('up','down','inactive');
-      if (i === colMap[colIndex]) {
-        if (sortDirections[colIndex] === 'asc') {
-          ind.classList.add('up');
-        } else {
-          ind.classList.add('down');
-        }
-      } else {
-        ind.classList.add('inactive');
-      }
-      console.log('After update -> Indicator index:', i, 'Class list:', ind.classList);
-    });
-
-    console.log('sortDirections:', sortDirections);
-    renderApproaches(); // Rebuild table rows
-  }
-
-  // Rebuild table rows using currentApproaches
-  function renderApproaches() {
-    const tableBody = document.querySelector('table tbody');
-    tableBody.innerHTML = '';
-    currentApproaches.forEach((row) => {
-      const tableRow = document.createElement('tr');
-
-      var tableCell = document.createElement('td');
-      tableCell.setAttribute('data-label', 'Title');
-      tableCell.textContent = row["title"];
-      tableRow.appendChild(tableCell);
-
-      var tableCell = document.createElement('td');
-      tableCell.setAttribute('data-label', 'Authors');
-      tableCell.textContent = row["authors"];
-      tableRow.appendChild(tableCell);
-
-      var tableCell = document.createElement('td');
-      tableCell.setAttribute('data-label', 'Year');
-      const datetime = new Date(row["last_revised_date"]);
-      tableCell.textContent = datetime.getFullYear();
-      tableRow.appendChild(tableCell);
-
-      var tableCell = document.createElement('td');
-      tableCell.setAttribute('data-label', 'Neuron Count');
-      tableCell.textContent = row["neuron_count"];
-      tableRow.appendChild(tableCell);
-
-      var tableCell = document.createElement('td');
-      tableCell.setAttribute('data-label', 'Accuracy');
-      tableCell.textContent = row["accuracy"];
-      tableRow.appendChild(tableCell);
-
-      tableRow.addEventListener('click', () => {
-        window.location.href = row["paper"];
-      });
-
-      tableRow.addEventListener('mouseover', () => {
-        tableRow.style.cursor = 'pointer';
-      });
-
-      // Make sure any use of tableRow (e.g., event listeners) stays inside this block
-      tableBody.appendChild(tableRow);
-    });
-  }
 
   currentApproaches = approaches;
+  sortApproaches();
+  updateSortIndicators();
   renderApproaches();
-  attachSortHandlers();
 
-  const datasetDescription = document.getElementById(`dataset-count`);
-  datasetDescription.textContent = `Benchmarked: ${approaches.length}`;
+  document.getElementById('dataset-count').textContent = `Benchmarked: ${approaches.length}`;
 };
 
 const populateDatasetDescription = async () => {
-  var datasets = await fetchData("./data/datasets.json");
+  const datasets = await getDatasets();
+  const datasetInfo = datasets.find((data) => data.name === selectedDataset);
+  if (!datasetInfo) return;
 
-  var datasetInfo = datasets.find((data) => data.name === selectedDataset);
-
-  const datasetSection = document.getElementById(`dataset-section`);
+  const datasetSection = document.getElementById('dataset-section');
   datasetSection.style.cursor = 'pointer';
-  datasetSection.addEventListener('click', () => {
-    window.location.href = datasetInfo.url;
+  datasetSection.onclick = () => { window.location.href = datasetInfo.url; };
+
+  document.getElementById('dataset-name').textContent = datasetInfo.name;
+  document.getElementById('dataset-description').textContent = datasetInfo.description;
+};
+
+const populateDatasetOptions = async () => {
+  const datasets = await getDatasets();
+  const fragment = document.createDocumentFragment();
+  datasets.forEach((dataset) => {
+    const option = document.createElement('option');
+    option.value = dataset.name;
+    option.textContent = dataset.name;
+    fragment.appendChild(option);
   });
+  datasetSelect.appendChild(fragment);
+};
 
-  const datasetTitle = document.getElementById(`dataset-name`);
-  datasetTitle.textContent = datasetInfo.name;
+const populateApproachOptions = () => {
+  const fragment = document.createDocumentFragment();
+  approachOptions.forEach((approach) => {
+    const option = document.createElement('option');
+    option.value = approach;
+    option.textContent = approach;
+    fragment.appendChild(option);
+  });
+  approachSelect.appendChild(fragment);
+};
 
-  const datasetDescription = document.getElementById(`dataset-description`);
-  datasetDescription.textContent = datasetInfo.description;
-}
+datasetSelect.addEventListener('change', (event) => {
+  selectedDataset = event.target.value;
+  populateDatasetDescription();
+  populateDatasetTable();
+});
 
+approachSelect.addEventListener('change', (event) => {
+  selectedApproach = event.target.value;
+  populateDatasetTable();
+});
 
-getDatasetOptions();
+// Initialise.
+populateApproachOptions();
+attachSortHandlers();
+populateDatasetOptions();
 populateDatasetDescription();
 populateDatasetTable();

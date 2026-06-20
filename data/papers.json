@@ -292,7 +292,7 @@
     "paper": "https://ieeexplore.ieee.org/document/7539039",
     "last_revised_date": "2016-05-25T00:00:00.000Z",
     "title": "Effective Sensor Fusion with Event-Based Sensors and Deep Network Architectures",
-    "authors": "Daniel Neil, Shih-Chii Liu",
+    "authors": "D. Neil, S. Liu",
     "approaches": [
       {
         "category": "Spike-Based Backpropagation Variants",
@@ -333,6 +333,33 @@
           "Event-based data",
           "Square pulse as supervisory training signal"
         ]
+      }
+    ]
+  },
+  {
+    "paper": "https://thesai.org/Publications/ViewPaper?Volume=4&Issue=7&Code=ijarai&SerialNo=1",
+    "last_revised_date": "2015-01-01T00:00:00.000Z",
+    "title": "A Minimal Spiking Neural Network to Rapidly Train and Classify Handwritten Digits in Binary and 10-Digit Tasks",
+    "authors": "A. Tavanaei, A. S. Maida",
+    "approaches": [
+      {
+        "category": null,
+        "dataset": "MNIST",
+        "neuron_count": null,
+        "accuracy": null
+      }
+    ]
+  },
+  {
+    "paper": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003037",
+    "last_revised_date": "2013-04-01T00:00:00.000Z",
+    "title": "Bayesian Computation Emerges in Generic Cortical Microcircuits through Spike-Timing-Dependent Plasticity",
+    "authors": "B. Nessler, M. Pfeiffer, L. Buesing, W. Maass",
+    "approaches": [
+      {
+        "category": null,
+        "dataset": "MNIST",
+        "accuracy": 92
       }
     ]
   }

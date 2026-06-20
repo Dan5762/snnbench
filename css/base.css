@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(../font/Satoshi-Regular.woff2) format("woff2"), url(../font/Satoshi-Regular.woff) format("woff");
+  src: local('Satoshi Regular'), local('Satoshi-Regular'), url(../font/Satoshi-Regular.woff2) format("woff2");
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: local('Pacifico Medium'), local('Pacifico-Medium'), url(../font/Satoshi-Medium.woff2) format("woff2"), url(../font/Satoshi-Medium.woff) format("woff");
+  src: local('Satoshi Medium'), local('Satoshi-Medium'), url(../font/Satoshi-Medium.woff2) format("woff2");
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: local('Pacifico Bold'), local('Pacifico-Bold'), url(../font/Satoshi-Bold.woff2) format("woff2"), url(../font/Satoshi-Bold.woff) format("woff");
+  src: local('Satoshi Bold'), local('Satoshi-Bold'), url(../font/Satoshi-Bold.woff2) format("woff2");
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;

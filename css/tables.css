@@ -33,6 +33,19 @@ table th:has(.sort-indicator) {
   cursor: pointer;
 }
 
+table tbody tr[role="link"] {
+  cursor: pointer;
+}
+
+table tbody tr[role="link"]:hover {
+  background-color: #f5f5f5;
+}
+
+table tbody tr[role="link"]:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: -2px;
+}
+
 .sort-indicator {
   position: relative;
   width: 8px;
